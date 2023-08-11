@@ -19,10 +19,12 @@ const PostPage = ({ posts, handleDelete }) => {
             {!post && (
                 <>
                     <h2>No such post</h2>
-                    <p className="postDate">
+                    <p className="postBody">
                         Unfortunately this post doesn't exist
                     </p>
-                    <Link to="/">Click here to go home</Link>
+                    <Link className="back" to="/">
+                        Click here to go home
+                    </Link>
                 </>
             )}
         </article>

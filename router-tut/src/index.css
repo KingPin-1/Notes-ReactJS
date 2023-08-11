@@ -30,7 +30,16 @@ nav {
 
 main {
     padding: 0.5rem 1rem;
-    min-height: 50vh;
+    min-height: 40vh;
+    margin-bottom: 2rem;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem;
 }
 
 form {
@@ -45,7 +54,7 @@ form input[type='text'] {
     height: 100%;
 }
 
-form label {
+.searchForm label {
     position: absolute;
     left: -99999px;
 }
@@ -63,9 +72,13 @@ ul li {
     border-radius: 4px;
 }
 
-a {
+a:not(.back) {
     text-decoration: none;
     color: inherit;
+}
+
+.back {
+    font-size: 0.8rem;
 }
 
 .Nav li:hover,
@@ -86,6 +99,10 @@ article:not(.post) {
     padding: 1rem 0;
 }
 
+main > article:last-child {
+    border-bottom: none;
+}
+
 .post {
     padding: 1rem;
 }
@@ -99,7 +116,8 @@ article:not(.post) {
     margin-top: 2rem;
 }
 
-article h2 {
+article h2,
+h2 {
     font-size: 1.5rem;
     font-weight: 600;
     padding: 0.25rem 0;
@@ -121,6 +139,41 @@ article h2 {
 .Home > article:first-child {
     padding: 0 0 1rem 0;
 }
+
+.newPostForm {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.newPostForm label {
+    font-size: 0.6rem;
+    font-weight: lighter;
+    margin-bottom: -7px;
+}
+
+.newPostForm textarea {
+    height: 100px;
+    padding: 0.5rem;
+}
+
+.newPostForm button {
+    border: 1px solid black;
+    padding: 0.5rem 0;
+    box-shadow: 1px 1px 0px black;
+}
+
+.newPostForm > textarea:focus,
+.newPostForm > input:focus {
+    outline: 1px solid black;
+}
+
+input,
+textarea {
+    font-family: inherit;
+    font-size: 0.8rem;
+}
+
 @media only screen and (min-width: 610px) {
     html {
         font-size: 22px;
@@ -136,10 +189,6 @@ article h2 {
 
     .searchForm {
         width: 50%;
-    }
-
-    .newPostForm textarea {
-        height: 300px;
     }
 }
 
