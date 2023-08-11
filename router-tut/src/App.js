@@ -38,6 +38,11 @@ function App() {
         },
     ]);
     const [search, setSearch] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const handleDelete = (id) => {
+        const filteredPosts = posts.filter((post) => post.id.toString() !== id);
+        setPosts(filteredPosts);
+    };
 
     return (
         <div className="App">
@@ -45,13 +50,13 @@ function App() {
             <Nav search={search} setSearch={setSearch} />
             <Switch>
                 <Route exact path="/">
-                    <Home />
+                    <Home posts={posts} />
                 </Route>
                 <Route exact path="/post">
                     <NewPost />
                 </Route>
-                <Route path="/posts/:id">
-                    <PostPage />
+                <Route path="/post/:id">
+                    <PostPage posts={posts} handleDelete={handleDelete} />
                 </Route>
                 <Route path="/about" component={About}></Route>
                 <Route path="*" component={Missing}></Route>

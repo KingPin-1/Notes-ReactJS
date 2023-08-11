@@ -14,12 +14,23 @@ body {
     font-size: 24px;
 }
 
+header,
+footer {
+    padding: 1rem;
+    background-color: papayawhip;
+}
+
 nav {
+    padding: 0.5rem 1rem;
     display: flex;
     align-items: stretch;
     justify-content: space-between;
     gap: 16px;
-    padding: 1rem 0.5rem;
+}
+
+main {
+    padding: 0.5rem 1rem;
+    min-height: 50vh;
 }
 
 form {
@@ -42,14 +53,17 @@ form label {
 ul {
     display: flex;
     list-style: none;
-    gap: 0.5rem;
 }
 
 ul li {
     height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    border-radius: 4px;
 }
 
-ul a {
+a {
     text-decoration: none;
     color: inherit;
 }
@@ -62,6 +76,51 @@ ul a {
     color: #333;
 }
 
+.Home {
+    display: flex;
+    flex-direction: column;
+}
+
+article:not(.post) {
+    border-bottom: 1px solid black;
+    padding: 1rem 0;
+}
+
+.post {
+    padding: 1rem;
+}
+
+.post button {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid red;
+    background: lightcoral;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+article h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0.25rem 0;
+}
+
+.postDate {
+    font-size: 0.7rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+        'Lucida Sans', Arial, sans-serif;
+}
+
+.postBody {
+    padding-top: 1rem;
+    font-size: 1rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+        'Lucida Sans', Arial, sans-serif;
+}
+
+.Home > article:first-child {
+    padding: 0 0 1rem 0;
+}
 @media only screen and (min-width: 610px) {
     html {
         font-size: 22px;
@@ -71,32 +130,12 @@ ul a {
         font-size: 2rem;
     }
 
-    .Nav {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        align-items: center;
-    }
-
     .Nav ul {
         text-align: right;
     }
 
-    .Nav li:hover,
-    .Nav li:focus,
-    .Nav li:hover a,
-    .Nav li:focus a {
-        background-color: #eee;
-        color: #333;
-    }
-
     .searchForm {
         width: 50%;
-        padding: 0.5rem 0;
-    }
-
-    .searchForm input[type='text'] {
-        margin-left: 0.5rem;
     }
 
     .newPostForm textarea {
@@ -107,5 +146,30 @@ ul a {
 @media only screen and (min-width: 992px) {
     .Header svg {
         font-size: 3rem;
+    }
+}
+
+@media only screen and (orientation: portrait) {
+    body {
+        font-size: 18px;
+    }
+    main,
+    nav,
+    header,
+    footer {
+        padding: 0.5rem;
+    }
+    main {
+        width: 100%;
+    }
+    nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        background: papayawhip;
+    }
+    nav ul {
+        width: 100%;
     }
 }
