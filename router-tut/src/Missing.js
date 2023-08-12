@@ -6,7 +6,9 @@ const Missing = () => {
             <h2>Page not found</h2>
             <p>Well, that's dissappointing</p>
             <p>
-                <Link to="/">Visit our homepage</Link>
+                <Link className="missingLink" to="/">
+                    Visit our homepage
+                </Link>
             </p>
         </main>
     );
