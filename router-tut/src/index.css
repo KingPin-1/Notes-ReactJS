@@ -12,6 +12,22 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 24px;
+    display: flex;
+}
+
+#root {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.App {
+    width: 100%;
+    max-width: 800px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header,
@@ -30,12 +46,12 @@ nav {
 
 main {
     padding: 0.5rem 1rem;
-    min-height: 40vh;
     margin-bottom: 2rem;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 footer {
-    position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
