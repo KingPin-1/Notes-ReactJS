@@ -30,6 +30,12 @@ body {
     flex-direction: column;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 header,
 footer {
     padding: 1rem;
@@ -194,6 +200,10 @@ input,
 textarea {
     font-family: inherit;
     font-size: 0.8rem;
+}
+
+.statusMsg{
+    margin-top: 2rem;
 }
 
 @media only screen and (min-width: 610px) {

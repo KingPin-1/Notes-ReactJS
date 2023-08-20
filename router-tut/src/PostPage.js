@@ -5,7 +5,7 @@ const PostPage = ({ posts, handleDelete }) => {
     console.log(id);
     const post = posts.find((post) => post.id.toString() === id);
     return (
-        <article className="post">
+        <main className="post">
             {post && (
                 <>
                     <h2>{post.title}</h2>
@@ -30,7 +30,7 @@ const PostPage = ({ posts, handleDelete }) => {
                     </Link>
                 </>
             )}
-        </article>
+        </main>
     );
 };
 
