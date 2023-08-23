@@ -3,13 +3,16 @@ import Header from './Header';
 import Footer from './Footer';
 import Nav from './Nav';
 import { Outlet } from 'react-router-dom';
+import { DataProvider } from './context/DataContext';
 
-const Layout = ({ search, setSearch, width }) => {
+const Layout = () => {
     return (
         <div className="App">
-            <Header title="React JS Blog" width={width} />
-            <Nav search={search} setSearch={setSearch} />
-            <Outlet />
+            <Header title="React JS Blog" />
+            <DataProvider>
+                <Nav />
+                <Outlet />
+            </DataProvider>
             <Footer />
         </div>
     );

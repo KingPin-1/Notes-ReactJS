@@ -1,9 +1,28 @@
-import { Link, useParams } from 'react-router-dom';
+/* eslint-disable no-unused-vars */
+import { useContext } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import DataContext from './context/DataContext';
+import api from './api/posts';
 
-const PostPage = ({ posts, handleDelete }) => {
+const PostPage = () => {
     const { id } = useParams();
-    console.log(id);
+    const { posts, setPosts } = useContext(DataContext);
     const post = posts.find((post) => post.id.toString() === id);
+    const navigate = useNavigate();
+
+    const handleDelete = async (id) => {
+        try {
+            const response = await api.delete(`/posts/${id}`);
+            const filteredPosts = posts.filter(
+                (post) => post.id.toString() !== id
+            );
+            setPosts(filteredPosts);
+            navigate('/');
+        } catch (err) {
+            console.log(`Error: ${err.message}`);
+        }
+    };
+
     return (
         <main className="post">
             {post && (
