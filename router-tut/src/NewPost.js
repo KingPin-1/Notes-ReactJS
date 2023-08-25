@@ -1,17 +1,17 @@
-/* eslint-disable no-unused-vars */
-import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
-import DataContext from './context/DataContext';
-import api from './api/posts.js';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 
 const NewPost = () => {
-    const { posts, setPosts } = useContext(DataContext);
-    const [postTitle, setPostTitle] = useState('');
-    const [postBody, setPostBody] = useState('');
+    const posts = useStoreState((state) => state.posts);
+    const postTitle = useStoreState((state) => state.postTitle);
+    const postBody = useStoreState((state) => state.postBody);
+    const savePost = useStoreActions((action) => action.savePost);
+    const setPostTitle = useStoreActions((action) => action.setPostTitle);
+    const setPostBody = useStoreActions((action) => action.setPostBody);
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const newPost = {
             id: posts.length ? posts[posts.length - 1].id + 1 : 1,
@@ -19,16 +19,8 @@ const NewPost = () => {
             datetime: format(new Date(), 'MMMM dd,yyyy pp'),
             body: postBody,
         };
-        try {
-            const response = await api.post('/posts', newPost);
-            const newList = [...posts, newPost];
-            setPosts(newList);
-            setPostBody('');
-            setPostTitle('');
-            navigate('/');
-        } catch (err) {
-            console.log(`Error: ${err.message}`);
-        }
+        savePost(newPost);
+        navigate('/');
     };
 
     return (

@@ -1,37 +1,31 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import DataContext from './context/DataContext';
 import { format } from 'date-fns';
-import api from './api/posts';
 
 const EditPost = () => {
-    const { posts, setPosts } = useContext(DataContext);
-    const [editPostTitle, setEditPostTitle] = useState('');
-    const [editPostBody, setEditPostBody] = useState('');
+    const posts = useStoreState((state) => state.posts);
+    const editPostTitle = useStoreState((state) => state.editPostTitle);
+    const editPostBody = useStoreState((state) => state.editPostBody);
+    const editPost = useStoreActions((action) => action.editPost);
+    const setEditPostTitle = useStoreActions(
+        (action) => action.setEditPostTitle
+    );
+    const setEditPostBody = useStoreActions((action) => action.setEditPostBody);
+
     const { id } = useParams();
     const post = posts.find((post) => post.id.toString() === id);
     const navigate = useNavigate();
 
-    const handleEdit = async (id) => {
+    const handleEdit = (id) => {
         const updatedPost = {
             id: id,
             title: editPostTitle,
             datetime: format(new Date(), 'MMMM dd,yyyy pp'),
             body: editPostBody,
         };
-        try {
-            const response = await api.put(`/posts/${id}`, updatedPost);
-            setPosts(
-                posts.map((post) =>
-                    post.id === id ? { ...response.data } : post
-                )
-            );
-            setEditPostBody('');
-            setEditPostTitle('');
-            navigate('/');
-        } catch (err) {
-            console.log(`Error: ${err.message}`);
-        }
+        editPost(updatedPost);
+        navigate(`/post/${id}`);
     };
 
     useEffect(() => {
@@ -40,7 +34,7 @@ const EditPost = () => {
             setEditPostTitle(post.title);
         }
     }, [post, setEditPostBody, setEditPostTitle]);
-    
+
     return (
         <main className="newPost">
             {editPostTitle && (
