@@ -25,7 +25,7 @@ const NewPost = () => {
 
     return (
         <main className="newPost">
-            <h2>New Post</h2>
+            <h2>New Note</h2>
             <form className="newPostForm" onSubmit={handleSubmit}>
                 <label htmlFor="postTitle">Title:</label>
                 <input
@@ -37,7 +37,7 @@ const NewPost = () => {
                     onChange={(e) => setPostTitle(e.target.value)}
                     autoComplete="off"
                 />
-                <label htmlFor="postBody">Post:</label>
+                <label htmlFor="postBody">Note:</label>
                 <textarea
                     required
                     id="postBody"

@@ -16,7 +16,7 @@ const EditPost = () => {
     const { id } = useParams();
     const post = posts.find((post) => post.id.toString() === id);
     const navigate = useNavigate();
-
+ 
     const handleEdit = (id) => {
         const updatedPost = {
             id: id,
@@ -39,7 +39,7 @@ const EditPost = () => {
         <main className="newPost">
             {editPostTitle && (
                 <>
-                    <h2>Edit Post</h2>
+                    <h2>Edit Note</h2>
                     <form
                         className="newPostForm"
                         onSubmit={(e) => e.preventDefault()}

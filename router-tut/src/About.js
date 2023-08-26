@@ -3,8 +3,8 @@ const About = () => {
         <main>
             <h2>About</h2>
             <p>
-                This Blog is a part of a project to help me learn react and
-                react-router!
+                This Notes app is a part of a project to help me learn ReactJS
+                and related technologies!
             </p>
         </main>
     );

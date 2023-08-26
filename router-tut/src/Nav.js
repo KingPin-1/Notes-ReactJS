@@ -25,7 +25,7 @@ const Nav = () => {
                 <label htmlFor="searchBar">Search Blog&nbsp;</label>
                 <input
                     type="text"
-                    placeholder="Search Blog"
+                    placeholder="Search Notes"
                     id="searchBar"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
@@ -36,7 +36,7 @@ const Nav = () => {
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to="/post">Post</Link>
+                    <Link to="/post">Create</Link>
                 </li>
                 <li>
                     <Link to="/about">About</Link>

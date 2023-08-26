@@ -7,7 +7,7 @@ import Layout from './Layout.js';
 import EditPost from './EditPost.js';
 import useAxiosFetch from './hooks/useAxiosFetch.js';
 import { Route, Routes } from 'react-router-dom';
-import { useStoreActions } from 'easy-peasy';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 import { useEffect } from 'react';
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
     const { data, fetchError, isLoading } = useAxiosFetch(
         'http://localhost:3500/posts'
     );
+
     useEffect(() => {
         setPosts(data);
     }, [data, setPosts]);
