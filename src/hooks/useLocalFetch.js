@@ -13,6 +13,8 @@ const useLocalFetch = (key) => {
             const res = JSON.parse(localStorage.getItem(key));
             setData(res);
         }
+        setFetchError(null);
+        setIsLoading(false);
     }, [key]);
 
     return { data, fetchError, isLoading };
