@@ -1,5 +1,4 @@
 import { createStore, action, computed, thunk } from 'easy-peasy';
-import api from './api/posts';
 
 export default createStore({
     posts: [],
@@ -37,8 +36,9 @@ export default createStore({
     savePost: thunk(async (actions, newPost, helpers) => {
         const { posts } = helpers.getState();
         try {
-            const response = await api.post('/posts', newPost);
-            actions.setPosts([...posts, newPost]);
+            const newList = [...posts, newPost];
+            localStorage.setItem('notes', JSON.stringify(newList));
+            actions.setPosts(newList);
             actions.setPostBody('');
             actions.setPostTitle('');
         } catch (err) {
@@ -48,10 +48,10 @@ export default createStore({
     deletePost: thunk(async (actions, id, helpers) => {
         const { posts } = helpers.getState();
         try {
-            const response = await api.delete(`/posts/${id}`);
             const filteredPosts = posts.filter(
                 (post) => post.id.toString() !== id
             );
+            localStorage.setItem('notes', JSON.stringify(filteredPosts));
             actions.setPosts(filteredPosts);
         } catch (err) {
             console.log(`Error: ${err.message}`);
@@ -61,12 +61,11 @@ export default createStore({
         const { posts } = helpers.getState();
         const { id } = updatedPost;
         try {
-            const response = await api.put(`/posts/${id}`, updatedPost);
-            actions.setPosts(
-                posts.map((post) =>
-                    post.id === id ? { ...response.data } : post
-                )
+            const updatedPosts = posts.map((post) =>
+                post.id === id ? updatedPost : post
             );
+            localStorage.setItem('notes', JSON.stringify(updatedPosts));
+            actions.setPosts(updatedPosts);
             actions.setEditPostBody('');
             actions.setEditPostTitle('');
         } catch (err) {

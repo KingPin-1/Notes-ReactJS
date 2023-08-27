@@ -5,16 +5,14 @@ import PostPage from './PostPage.js';
 import NewPost from './NewPost.js';
 import Layout from './Layout.js';
 import EditPost from './EditPost.js';
-import useAxiosFetch from './hooks/useAxiosFetch.js';
 import { Route, Routes } from 'react-router-dom';
-import { useStoreActions, useStoreState } from 'easy-peasy';
+import { useStoreActions } from 'easy-peasy';
 import { useEffect } from 'react';
+import useLocalFetch from '../hooks/useLocalFetch.js';
 
 function App() {
     const setPosts = useStoreActions((action) => action.setPosts);
-    const { data, fetchError, isLoading } = useAxiosFetch(
-        'http://localhost:3500/posts'
-    );
+    const { data, fetchError, isLoading } = useLocalFetch('notes');
 
     useEffect(() => {
         setPosts(data);

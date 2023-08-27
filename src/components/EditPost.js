@@ -16,7 +16,7 @@ const EditPost = () => {
     const { id } = useParams();
     const post = posts.find((post) => post.id.toString() === id);
     const navigate = useNavigate();
- 
+
     const handleEdit = (id) => {
         const updatedPost = {
             id: id,
@@ -37,7 +37,7 @@ const EditPost = () => {
 
     return (
         <main className="newPost">
-            {editPostTitle && (
+            {post.title && (
                 <>
                     <h2>Edit Note</h2>
                     <form
@@ -71,7 +71,7 @@ const EditPost = () => {
                     </form>
                 </>
             )}
-            {!editPostTitle && (
+            {!post.title && (
                 <>
                     <h2>Post Not Found</h2>
                     <p className="postBody">
