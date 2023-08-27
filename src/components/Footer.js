@@ -8,6 +8,7 @@ const Footer = () => {
             <p className="footer-detail">
                 Created with 💓 by{' '}
                 <a
+                    className="footerLink"
                     href="https://github.com/KingPin-1/"
                     target="_blank"
                     rel="noreferrer noopener"
